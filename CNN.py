@@ -1,5 +1,4 @@
 import time
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -11,6 +10,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from torchvision.utils import make_grid
 from sklearn.metrics import confusion_matrix
+print("Importing Libraries")
 
 transform = transforms.ToTensor()
 
@@ -19,7 +19,7 @@ test_data = datasets.MNIST(root='./mnist_dataset', train=False, download=True, t
 
 train_loader = DataLoader(train_data, batch_size=10, shuffle=True)
 test_loader = DataLoader(test_data, batch_size=10, shuffle=True)
-
+print("MK")
 
 class CNN(nn.Module):
     def __init__(self):
@@ -45,7 +45,6 @@ class CNN(nn.Module):
         X = self.fc3(X)
 
         return F.log_softmax(X, dim=1)
-
 
 model = CNN()
 criterion = nn.CrossEntropyLoss()
@@ -98,3 +97,5 @@ print(f'Training Time: {total_time / 60} minutes')
 
 # Save our model
 torch.save(model.state_dict(), 'CNN_Model_Pytorch.pt')
+
+
